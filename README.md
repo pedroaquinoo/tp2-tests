@@ -4,50 +4,76 @@
 
 ```
 aviator-2/
-├── bin/
-│   ├── server          # Server executable
-│   └── client          # Client executable
-├── common.h            # Shared definitions
-├── server.c            # Server implementation
-├── client.c            # Client implementation
-├── test.py             # Comprehensive test suite
-├── Makefile            # Build configuration
-└── README.md           # Documentation
+├── bin/               # Compiled executables
+├── server.c           # Server implementation (452 lines)
+├── client.c           # Client implementation (277 lines)  
+├── common.h           # Shared definitions (34 lines)
+├── test.py           # Comprehensive test suite (654 lines)
+├── debug_helper.py   # Quick debugging utilities (180 lines)
+├── Makefile          # Build configuration (35 lines)
+└── README.md         # Enhanced documentation (275 lines)
 ```
 
-## 🧪 Testing
 
-The project includes a comprehensive test suite that covers all functionality:
+## 🧪 Testing & Debugging
 
-**Automated Tests:**
+The project includes a comprehensive test suite with advanced debugging capabilities:
+
+### **Automated Tests**
 ```bash
-make test          # Run all automated tests
-python3 test.py --auto
+make test              # Run all automated tests
+python3 test.py --auto # Direct command
 ```
 
-**Stress Tests:**
+### **Stress Tests**
 ```bash
-make test-stress   # Run stress/load tests  
+make test-stress       # Run stress/load tests  
 python3 test.py --stress
 ```
 
-**Manual Test Guide:**
+### **Manual Test Guide**
 ```bash
-make test-manual   # Show manual testing guide
+make test-manual       # Show manual testing guide
 python3 test.py --manual
 ```
 
-**All Tests:**
+### **All Tests**
 ```bash
-make test-all      # Run everything
+make test-all          # Run everything
 python3 test.py --all
 ```
 
-**Manual Testing:**
+### **Debug Mode**
+Add `--debug` flag to any test for verbose output:
+```bash
+python3 test.py --auto --debug    # Detailed message tracing
+python3 test.py --stress --debug  # Stress test debugging
+```
+
+### **Quick Debugging Tools**
+```bash
+# Test connection to server
+python3 debug_helper.py connection 8080
+
+# Verify struct compatibility
+python3 debug_helper.py struct
+
+# Monitor server logs
+python3 debug_helper.py server 51511 15
+
+# Run single client scenario
+python3 debug_helper.py scenario 51511
+```
+
+### **Manual Testing**
 1. Start server: `./bin/server v4 8080`
 2. Connect clients: `./bin/client 127.0.0.1 8080 -nick Player1`
 3. Test scenarios: betting, cash-out, and explosion
 
-**Desenvolvido para:** Disciplina de Redes  
-**Linguagem:** C (padrão C99)  
-**Compilador:** GCC com flags: `-pthread -Wall -Wextra -O2` 
+### **Debugging Features**
+- 🔍 **Message Tracing**: See all client-server communications
+- 📊 **Connection Monitoring**: Track client connections and disconnections  
+- 🎯 **Protocol Validation**: Verify message structure and size
+- 📈 **Game Flow Analysis**: Monitor betting, multipliers, and explosions
+- ⚡ **Real-time Logs**: Live server event logging
+
